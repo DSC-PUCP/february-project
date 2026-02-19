@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from '@/lib/auth-client';
 import { getOrganizationById, updateOrganization } from '@/lib/actions/organizations';
@@ -8,7 +8,8 @@ import type { Organization } from '@/lib/types';
 
 type Contact = { type: 'email' | 'whatsapp' | 'link'; value: string };
 
-export default function EditOrganizationPage({ params }: { params: { id: string } }) {
+export default function EditOrganizationPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const router = useRouter();
     const { data: session } = useSession();
 
@@ -25,7 +26,7 @@ export default function EditOrganizationPage({ params }: { params: { id: string 
     const [contacts, setContacts] = useState<Contact[]>([]);
 
     useEffect(() => {
-        getOrganizationById(params.id)
+        getOrganizationById(id)
             .then((data) => {
                 if (!data) { router.push('/dashboard'); return; }
                 setOrg(data);
@@ -36,7 +37,7 @@ export default function EditOrganizationPage({ params }: { params: { id: string 
             })
             .catch(console.error)
             .finally(() => setPageLoading(false));
-    }, [params.id, router]);
+    }, [id, router]);
 
     useEffect(() => {
         if (!session) return;
@@ -44,7 +45,7 @@ export default function EditOrganizationPage({ params }: { params: { id: string 
     }, [session, router]);
 
     const canEdit =
-        session?.user?.role === 'admin' || session?.user?.id === params.id;
+        session?.user?.role === 'admin' || session?.user?.id === id;
 
     const addContact = () => {
         setContacts((prev) => [...prev, { type: 'email', value: '' }]);
@@ -67,7 +68,7 @@ export default function EditOrganizationPage({ params }: { params: { id: string 
         setLoading(true);
 
         try {
-            await updateOrganization(params.id, {
+            await updateOrganization(id, {
                 name,
                 description,
                 image: image || null,

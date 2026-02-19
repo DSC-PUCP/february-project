@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { notFound } from 'next/navigation';
 import { getEventById, deleteEvent } from '@/lib/actions/events';
@@ -10,7 +10,8 @@ import { useSession } from '@/lib/auth-client';
 import Link from 'next/link';
 import type { Event, Organization, Category } from '@/lib/types';
 
-export default function EventDetailPage({ params }: { params: { id: string } }) {
+export default function EventDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const router = useRouter();
     const { data: session } = useSession();
     const [event, setEvent] = useState<Event | null>(null);
@@ -26,7 +27,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
         async function loadData() {
             try {
                 const [eventData, categoriesData] = await Promise.all([
-                    getEventById(params.id),
+                    getEventById(id),
                     getAllCategories(),
                 ]);
 
@@ -48,7 +49,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
             }
         }
         loadData();
-    }, [params.id]);
+    }, [id]);
 
     if (loading) {
         return (
@@ -73,7 +74,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
         setDeleteError('');
         setDeleteLoading(true);
         try {
-            await deleteEvent(params.id);
+            await deleteEvent(id);
             router.push('/dashboard');
         } catch (err) {
             setDeleteError((err as Error).message || 'Error al eliminar el evento.');
@@ -101,7 +102,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
             {canManage && (
                 <div className="flex gap-2">
                     <Link
-                        href={`/events/${params.id}/edit`}
+                        href={`/events/${id}/edit`}
                         className="flex items-center gap-1 px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-semibold text-sm hover:bg-slate-200 transition-colors"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

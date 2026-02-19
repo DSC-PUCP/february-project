@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from '@/lib/auth-client';
 import { getEventById, updateEvent, uploadBanner } from '@/lib/actions/events';
@@ -14,7 +14,8 @@ function toDatetimeLocal(date: Date | null | undefined): string {
     return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 }
 
-export default function EditEventPage({ params }: { params: { id: string } }) {
+export default function EditEventPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
     const router = useRouter();
     const { data: session } = useSession();
 
@@ -41,7 +42,7 @@ export default function EditEventPage({ params }: { params: { id: string } }) {
         async function load() {
             try {
                 const [ev, cats] = await Promise.all([
-                    getEventById(params.id),
+                    getEventById(id),
                     getAllCategories(),
                 ]);
                 if (!ev) { router.push('/'); return; }
@@ -64,7 +65,7 @@ export default function EditEventPage({ params }: { params: { id: string } }) {
             }
         }
         load();
-    }, [params.id, router]);
+    }, [id, router]);
 
     useEffect(() => {
         if (!session) return;
@@ -102,7 +103,7 @@ export default function EditEventPage({ params }: { params: { id: string } }) {
                 finalBannerUrl = await uploadBanner(formData);
             }
 
-            await updateEvent(params.id, {
+            await updateEvent(id, {
                 title,
                 description,
                 banner: finalBannerUrl,
@@ -114,7 +115,7 @@ export default function EditEventPage({ params }: { params: { id: string } }) {
                 categories: selectedCategories,
             });
 
-            router.push(`/events/${params.id}`);
+            router.push(`/events/${id}`);
         } catch (err) {
             setError((err as Error).message || 'Error al guardar los cambios.');
         } finally {
