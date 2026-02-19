@@ -22,6 +22,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, categories, onClick }) => 
             className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all cursor-pointer group"
         >
             <div className="relative h-48 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={event.banner}
                     alt={event.title}

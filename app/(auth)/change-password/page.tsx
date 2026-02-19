@@ -31,7 +31,7 @@ export default function ChangePasswordPage() {
         try {
             await changePassword(newPassword, oldPassword);
             router.push('/dashboard');
-        } catch (err) {
+        } catch {
             setError('Failed to change password. Please try again.');
         } finally {
             setLoading(false);

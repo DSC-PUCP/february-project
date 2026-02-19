@@ -167,6 +167,7 @@ export default function NewEventPage() {
                         placeholder="https://..."
                     />
                     {previewUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={previewUrl} alt="Preview" className="mt-3 w-full h-48 object-cover rounded-xl" />
                     )}
                 </div>

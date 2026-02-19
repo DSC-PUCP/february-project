@@ -74,6 +74,7 @@ export default function OrgProfilePage({ params }: { params: Promise<{ id: strin
                 <div className="px-8 pb-8">
                     <div className="-mt-12 mb-6">
                         {org.image ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img
                                 src={org.image}
                                 alt={org.name ?? 'Organización'}
@@ -203,6 +204,7 @@ function EventRow({ event, categories, isPast = false }: { event: Event; categor
             className="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-indigo-200 hover:bg-indigo-50/30 transition-all group"
         >
             {event.banner && (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img src={event.banner} alt={event.title} className="w-16 h-16 rounded-lg object-cover shrink-0" />
             )}
             <div className="flex-1 min-w-0">

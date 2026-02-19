@@ -125,6 +125,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
 
             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
                 <div className="relative h-96">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={event.banner} className="w-full h-full object-cover" alt={event.title} />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                     <div className="absolute bottom-8 left-8 right-8">

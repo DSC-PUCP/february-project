@@ -191,6 +191,7 @@ export default function EditEventPage({ params }: { params: Promise<{ id: string
                 <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Imagen de portada</label>
                     {previewUrl && (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={previewUrl} alt="Preview" className="mb-3 w-full h-48 object-cover rounded-xl" />
                     )}
                     <input
