@@ -13,7 +13,7 @@ export default function EditOrganizationPage({ params }: { params: Promise<{ id:
     const router = useRouter();
     const { data: session } = useSession();
 
-    const [org, setOrg] = useState<Organization | null>(null);
+    const [, setOrg] = useState<Organization | null>(null);
     const [pageLoading, setPageLoading] = useState(true);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -157,6 +157,7 @@ export default function EditOrganizationPage({ params }: { params: Promise<{ id:
                     <label className="block text-sm font-bold text-slate-700 mb-2">URL de imagen (avatar)</label>
                     <div className="flex gap-3 items-start">
                         {image && (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={image} alt="Avatar preview" className="w-16 h-16 rounded-xl object-cover flex-shrink-0 border border-slate-200" />
                         )}
                         {!image && (

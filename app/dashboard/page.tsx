@@ -278,6 +278,7 @@ export default function DashboardPage() {
                                             className="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-slate-200 transition-colors"
                                         >
                                             {event.banner && (
+                                                // eslint-disable-next-line @next/next/no-img-element
                                                 <img
                                                     src={event.banner}
                                                     alt={event.title}
@@ -334,7 +335,7 @@ export default function DashboardPage() {
                         <p className="text-slate-600 mb-2">
                             Esta acción no se puede deshacer. Se eliminará:
                         </p>
-                        <p className="font-semibold text-slate-800 mb-6">"{deleteModalEvent.title}"</p>
+                        <p className="font-semibold text-slate-800 mb-6">&quot;{deleteModalEvent.title}&quot;</p>
                         {deleteError && (
                             <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
                                 {deleteError}
