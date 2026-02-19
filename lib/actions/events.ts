@@ -5,6 +5,7 @@ import {desc, eq} from 'drizzle-orm';
 import {revalidatePath} from 'next/cache';
 import {auth} from '@/lib/auth';
 import {headers} from 'next/headers';
+import {saveImage} from '@/lib/upload';
 
 async function getSession() {
     return await auth.api.getSession({
@@ -88,4 +89,18 @@ export async function deleteEvent(id: string) {
     await db.delete(events).where(eq(events.id, id));
     revalidatePath('/');
     revalidatePath('/dashboard');
+}
+
+export async function uploadBanner(formData: FormData): Promise<string> {
+    const session = await getSession();
+    if (!session?.user) {
+        throw new Error('Unauthorized');
+    }
+
+    const file = formData.get('file') as File;
+    if (!file || file.size === 0) {
+        throw new Error('No file provided');
+    }
+
+    return saveImage(file);
 }
