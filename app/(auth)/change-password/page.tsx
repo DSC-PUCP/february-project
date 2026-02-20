@@ -17,22 +17,32 @@ export default function ChangePasswordPage() {
         setError('');
 
         if (newPassword !== confirmPassword) {
-            setError('Passwords do not match');
+            setError('Las contraseñas no coinciden');
             return;
         }
 
         if (newPassword.length < 8) {
-            setError('Password must be at least 8 characters');
+            setError('La contraseña nueva debe tener al menos 8 caracteres');
             return;
         }
 
         setLoading(true);
 
         try {
-            await changePassword(newPassword, oldPassword);
-            router.push('/dashboard');
+            const result = await changePassword(newPassword, oldPassword);
+            if (result.success) {
+                router.push('/dashboard');
+            } else {
+                switch (result.error) {
+                    case 'INVALID_CURRENT_PASSWORD':
+                        setError('Contraseña actual incorrecta.');
+                        break;
+                    default:
+                        throw result.error satisfies never;
+                }
+            }
         } catch {
-            setError('Failed to change password. Please try again.');
+            setError('Hubo un error al cambiar la contraseña. Por favor inténtalo de nuevo.');
         } finally {
             setLoading(false);
         }
@@ -41,9 +51,9 @@ export default function ChangePasswordPage() {
     return (
         <div className="flex items-center justify-center py-20 px-4">
             <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md border border-slate-100">
-                <h2 className="text-2xl font-bold mb-2">Welcome!</h2>
+                <h2 className="text-2xl font-bold mb-2">¡Hola!</h2>
                 <p className="text-slate-500 mb-6">
-                    This is your first login. Please set a new permanent password to continue.
+                    Establece una nueva contraseña.
                 </p>
 
                 {error && (
@@ -54,7 +64,7 @@ export default function ChangePasswordPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-2">Old Password</label>
+                        <label className="block text-sm font-bold text-slate-700 mb-2">Contraseña Antigua</label>
                         <input
                             type="password"
                             className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500"
@@ -65,7 +75,7 @@ export default function ChangePasswordPage() {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-bold text-slate-700 mb-2">New Password</label>
+                        <label className="block text-sm font-bold text-slate-700 mb-2">Contraseña Nueva</label>
                         <input
                             type="password"
                             className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500"
@@ -77,7 +87,7 @@ export default function ChangePasswordPage() {
                     </div>
                     <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">
-                            Confirm Password
+                            Confirma la Contraseña
                         </label>
                         <input
                             type="password"
@@ -93,7 +103,7 @@ export default function ChangePasswordPage() {
                         disabled={loading}
                         className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-colors disabled:opacity-50"
                     >
-                        {loading ? 'Updating...' : 'Update Password & Continue'}
+                        {loading ? 'Actualizando...' : 'Actualizar y continuar'}
                     </button>
                 </form>
             </div>

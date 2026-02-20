@@ -5,6 +5,11 @@ import {eq} from 'drizzle-orm';
 import {revalidatePath} from 'next/cache';
 import {auth} from '@/lib/auth';
 import {headers} from 'next/headers';
+import {APIError} from "better-auth";
+
+type ChangePasswordResult =
+    | { success: true }
+    | { success: false; error: 'INVALID_CURRENT_PASSWORD' };
 
 async function getSession() {
     return await auth.api.getSession({
@@ -89,19 +94,24 @@ export async function deleteOrganization(id: string) {
     revalidatePath('/dashboard');
 }
 
-export async function changePassword(newPassword: string, currentPassword: string) {
+export async function changePassword(newPassword: string, currentPassword: string): Promise<ChangePasswordResult> {
     const session = await getSession();
     if (!session?.user) {
         throw new Error('Unauthorized');
     }
 
-    await auth.api.changePassword({
-        body: {
-            newPassword,
-            currentPassword,
-        },
-        headers: await headers(),
-    });
+    try {
+        await auth.api.changePassword({
+            body: {
+                newPassword,
+                currentPassword,
+            },
+            headers: await headers(),
+        });
+    } catch (e) {
+        if (!(e instanceof APIError) || e.statusCode !== 400) throw e;
+        return { success: false, error: 'INVALID_CURRENT_PASSWORD' };
+    }
 
     await db.update(organizations).set({
         isFirstLogin: false,
@@ -109,4 +119,6 @@ export async function changePassword(newPassword: string, currentPassword: strin
     }).where(eq(organizations.id, session.user.id));
 
     revalidatePath('/dashboard');
+
+    return { success: true };
 }
