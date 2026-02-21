@@ -67,3 +67,4 @@ git push --set-upstream origin feat/mi-nueva-funcionalidad
 ```
 
 3. Abre un PR desde esa branch hacia `main`.
+4. Una vez que tu PR sea aprobado, borra la rama desde la UI de GitHub.
