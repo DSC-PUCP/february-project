@@ -7,13 +7,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "node --env-file=.env .next/standalone/server.js",
-    "lint": "eslint",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:seed": "tsx seed.ts",
     "generate:secret": "node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\"",
-    "postbuild": "node scripts/postbuild.js"
+    "postbuild": "node scripts/postbuild.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@libsql/client": "^0.17.0",
@@ -27,16 +29,27 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.3",
+    "eslint-config-prettier": "^10.1.8",
+    "@typescript-eslint/parser": "^8.56.0",
     "@tailwindcss/postcss": "^4",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "drizzle-kit": "^0.31.9",
-    "eslint": "^9",
+    "eslint": "^9.39.3",
     "eslint-config-next": "16.1.6",
+    "globals": "^17.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "3.8.1",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0"
+  },
+  "lint-staged": {
+    "**/*.ts": "npm run lint:fix"
   }
 }

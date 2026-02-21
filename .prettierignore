@@ -1,0 +1,5 @@
+.prettierignore
+node_modules
+**/node_modules
+**/*.mdx
+**/dist/*
