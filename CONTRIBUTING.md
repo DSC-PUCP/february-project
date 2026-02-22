@@ -97,5 +97,10 @@ git commit -am "feat: agrega nuevas secciones al dashboard"
 git push --set-upstream origin feat/mi-nueva-funcionalidad
 ```
 
-4. Abre un PR desde esa branch hacia `main`.
+4. Abre un PR desde esa branch hacia `main`. Para esto, abre el repo en GitHub y te aparecerá una opción para abrir PR (pull request):
+> <img width="924" height="151" alt="imagen" src="https://github.com/user-attachments/assets/773d9eab-7542-425b-9f14-8673a14ab2c6" />
+
+Al darle click, puedes ponerle una descripción o título describiendo los cambios. Luego "Create pull request". 
+> <img width="1068" height="657" alt="imagen" src="https://github.com/user-attachments/assets/da6ad280-c2f1-40b8-a36c-38bc7266cf40" />
+
 5. Una vez que tu PR sea aprobado, borra la rama desde la UI de GitHub.
