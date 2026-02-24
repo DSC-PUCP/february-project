@@ -11,6 +11,8 @@ if (process.env.VERCEL_BRANCH_URL) {
   trustedOrigins.push(`https://${process.env.VERCEL_BRANCH_URL}`);
 }
 
+console.log(trustedOrigins);
+
 export const auth = betterAuth({
   baseURL: process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
