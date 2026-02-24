@@ -3,6 +3,8 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from './db';
 import * as schema from './db/schema';
 
+console.log(['http://localhost:3000', `https://${process.env.VERCEL_URL}`]);
+
 export const auth = betterAuth({
   baseURL: process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
