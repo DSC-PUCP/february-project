@@ -17,6 +17,18 @@ async function getSession() {
   });
 }
 
+export async function getOrganizationsForFilter() {
+  const orgs = await db
+    .select()
+    .from(organizations)
+    .where(eq(organizations.role, 'organization'));
+
+  return orgs.map((org) => ({
+    id: org.id,
+    name: org.name,
+  }));
+}
+
 export async function getAllOrganizations(): Promise<Organization[]> {
   const session = await getSession();
   if (!session?.user || session.user.role !== 'admin') {
@@ -25,6 +37,8 @@ export async function getAllOrganizations(): Promise<Organization[]> {
 
   return db.select().from(organizations);
 }
+
+
 
 export async function getOrganizationById(
   id: string,

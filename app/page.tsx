@@ -6,6 +6,7 @@ import EventCard from '@/components/EventCard';
 import { getAllEvents } from '@/lib/actions/events';
 import { getAllCategories } from '@/lib/actions/categories';
 import type { Event, Category } from '@/lib/types';
+import { getOrganizationsForFilter } from '@/lib/actions/organizations';
 
 const PAGE_SIZE = 8;
 
@@ -13,21 +14,26 @@ export default function HomePage() {
   const router = useRouter();
   const [events, setEvents] = useState<Event[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [organizations, setOrganizations] = useState<{ id: string; name: string }[]>([]);
   const [search, setSearch] = useState('');
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [dateRange, setDateRange] = useState({ start: '', end: '' });
+  const [selectedOrg, setSelectedOrg] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+
 
   useEffect(() => {
     async function loadData() {
       try {
-        const [eventsData, categoriesData] = await Promise.all([
+        const [eventsData, categoriesData, organizationsData] = await Promise.all([
           getAllEvents(),
           getAllCategories(),
+          getOrganizationsForFilter(),
         ]);
         setEvents(eventsData);
         setCategories(categoriesData);
+        setOrganizations(organizationsData);
       } catch (error) {
         console.error('Failed to load data:', error);
       } finally {
@@ -40,7 +46,8 @@ export default function HomePage() {
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, selectedCats, dateRange]);
+  }, [search, selectedCats, dateRange, selectedOrg]);
+
 
   const filteredEvents = useMemo(() => {
     return events.filter((ev) => {
@@ -57,9 +64,11 @@ export default function HomePage() {
       const matchesDateEnd =
         !dateRange.end || evStart <= new Date(dateRange.end).getTime();
 
-      return matchesSearch && matchesCats && matchesDateStart && matchesDateEnd;
+      const matchesOrg =
+        selectedOrg === null || ev.orgId === selectedOrg;
+      return matchesSearch && matchesCats && matchesDateStart && matchesDateEnd && matchesOrg;
     });
-  }, [events, search, selectedCats, dateRange]);
+  }, [events, search, selectedCats, dateRange, selectedOrg]);
 
   const toggleCategory = (id: number) => {
     setSelectedCats((prev) =>
@@ -95,6 +104,7 @@ export default function HomePage() {
       </div>
 
       <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 mb-8 flex flex-col md:flex-row gap-4">
+        {/* Buscador */}
         <div className="flex-1 relative">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
@@ -117,6 +127,8 @@ export default function HomePage() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
+
+        {/* Filtro por fechas */}
         <div className="flex gap-4 items-center">
           <input
             type="date"
@@ -136,6 +148,24 @@ export default function HomePage() {
             }
           />
         </div>
+
+        {/* Filtro por organización */}
+        <div>
+          <select
+            value={selectedOrg ?? ''}
+            onChange={(e) =>
+              setSelectedOrg(e.target.value || null)
+            }
+            className="h-12 px-3 rounded-xl border border-slate-200 text-sm"
+          >
+            <option value="">Todas las organizaciones</option>
+            {organizations.map((org) => (
+              <option key={org.id} value={org.id}>
+                {org.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-8">
@@ -143,11 +173,10 @@ export default function HomePage() {
           <button
             key={cat.id}
             onClick={() => toggleCategory(cat.id)}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-              selectedCats.includes(cat.id)
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${selectedCats.includes(cat.id)
                 ? 'bg-indigo-600 text-white shadow-md'
                 : 'bg-white text-slate-600 border border-slate-200 hover:border-indigo-400'
-            }`}
+              }`}
           >
             {cat.name}
           </button>
@@ -188,11 +217,10 @@ export default function HomePage() {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`w-9 h-9 rounded-xl text-sm font-bold transition-colors ${
-                        page === currentPage
+                      className={`w-9 h-9 rounded-xl text-sm font-bold transition-colors ${page === currentPage
                           ? 'bg-indigo-600 text-white'
                           : 'border border-slate-200 text-slate-600 hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>
