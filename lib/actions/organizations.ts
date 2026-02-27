@@ -38,8 +38,6 @@ export async function getAllOrganizations(): Promise<Organization[]> {
   return db.select().from(organizations);
 }
 
-
-
 export async function getOrganizationById(
   id: string,
 ): Promise<Organization | null> {

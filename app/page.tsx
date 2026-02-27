@@ -14,7 +14,9 @@ export default function HomePage() {
   const router = useRouter();
   const [events, setEvents] = useState<Event[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [organizations, setOrganizations] = useState<{ id: string; name: string }[]>([]);
+  const [organizations, setOrganizations] = useState<
+    { id: string; name: string }[]
+  >([]);
   const [search, setSearch] = useState('');
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [dateRange, setDateRange] = useState({ start: '', end: '' });
@@ -22,15 +24,15 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
-
   useEffect(() => {
     async function loadData() {
       try {
-        const [eventsData, categoriesData, organizationsData] = await Promise.all([
-          getAllEvents(),
-          getAllCategories(),
-          getOrganizationsForFilter(),
-        ]);
+        const [eventsData, categoriesData, organizationsData] =
+          await Promise.all([
+            getAllEvents(),
+            getAllCategories(),
+            getOrganizationsForFilter(),
+          ]);
         setEvents(eventsData);
         setCategories(categoriesData);
         setOrganizations(organizationsData);
@@ -48,7 +50,6 @@ export default function HomePage() {
     setCurrentPage(1);
   }, [search, selectedCats, dateRange, selectedOrg]);
 
-
   const filteredEvents = useMemo(() => {
     return events.filter((ev) => {
       const matchesSearch =
@@ -64,9 +65,14 @@ export default function HomePage() {
       const matchesDateEnd =
         !dateRange.end || evStart <= new Date(dateRange.end).getTime();
 
-      const matchesOrg =
-        selectedOrg === null || ev.orgId === selectedOrg;
-      return matchesSearch && matchesCats && matchesDateStart && matchesDateEnd && matchesOrg;
+      const matchesOrg = selectedOrg === null || ev.orgId === selectedOrg;
+      return (
+        matchesSearch
+        && matchesCats
+        && matchesDateStart
+        && matchesDateEnd
+        && matchesOrg
+      );
     });
   }, [events, search, selectedCats, dateRange, selectedOrg]);
 
@@ -153,10 +159,8 @@ export default function HomePage() {
         <div>
           <select
             value={selectedOrg ?? ''}
-            onChange={(e) =>
-              setSelectedOrg(e.target.value || null)
-            }
-            className="h-12 px-3 rounded-xl border border-slate-200 text-sm"
+            onChange={(e) => setSelectedOrg(e.target.value || null)}
+            className="px-3 py-3 rounded-xl border border-slate-200 text-sm w-full md:w-auto"
           >
             <option value="">Todas las organizaciones</option>
             {organizations.map((org) => (
@@ -173,10 +177,11 @@ export default function HomePage() {
           <button
             key={cat.id}
             onClick={() => toggleCategory(cat.id)}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${selectedCats.includes(cat.id)
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+              selectedCats.includes(cat.id)
                 ? 'bg-indigo-600 text-white shadow-md'
                 : 'bg-white text-slate-600 border border-slate-200 hover:border-indigo-400'
-              }`}
+            }`}
           >
             {cat.name}
           </button>
@@ -217,10 +222,11 @@ export default function HomePage() {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`w-9 h-9 rounded-xl text-sm font-bold transition-colors ${page === currentPage
+                      className={`w-9 h-9 rounded-xl text-sm font-bold transition-colors ${
+                        page === currentPage
                           ? 'bg-indigo-600 text-white'
                           : 'border border-slate-200 text-slate-600 hover:bg-slate-50'
-                        }`}
+                      }`}
                     >
                       {page}
                     </button>
