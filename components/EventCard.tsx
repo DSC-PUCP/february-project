@@ -27,7 +27,7 @@ const EventCard: React.FC<EventCardProps> = ({
   return (
     <div
       onClick={() => onClick(event)}
-      className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-all cursor-pointer group"
+      className="bg-surface rounded-xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-all cursor-pointer group"
     >
       <div className="relative h-48 overflow-hidden">
         {bannerSrc ? (
@@ -38,13 +38,13 @@ const EventCard: React.FC<EventCardProps> = ({
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-brand-600 to-slate-300" />
+          <div className="w-full h-full bg-linear-to-br from-primary to-cta-soft" />
         )}
         <div className="absolute top-2 left-2 flex flex-wrap gap-1">
           {eventCategories.map((cat) => (
             <span
               key={cat.id}
-              className="bg-white/90 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider text-brand-700 border border-brand-100"
+              className="bg-surface/90 backdrop-blur px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider text-primary border border-border"
             >
               {cat.name}
             </span>
@@ -52,7 +52,7 @@ const EventCard: React.FC<EventCardProps> = ({
         </div>
       </div>
       <div className="p-4">
-        <div className="flex items-center text-brand-600 text-xs font-semibold mb-2">
+        <div className="flex items-center text-cta text-xs font-semibold mb-2">
           <svg
             className="w-3.5 h-3.5 mr-1"
             fill="none"
@@ -68,13 +68,13 @@ const EventCard: React.FC<EventCardProps> = ({
           </svg>
           {dateStr}
         </div>
-        <h3 className="text-lg font-bold text-slate-800 mb-1 line-clamp-1">
+        <h3 className="text-lg font-bold text-foreground mb-1 line-clamp-1">
           {event.title}
         </h3>
-        <p className="text-slate-500 text-sm line-clamp-2 mb-3">
+        <p className="text-muted text-sm line-clamp-2 mb-3">
           {event.description}
         </p>
-        <div className="flex items-center text-slate-400 text-xs">
+        <div className="flex items-center text-muted text-xs">
           <svg
             className="w-3.5 h-3.5 mr-1"
             fill="none"

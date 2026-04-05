@@ -47,7 +47,7 @@ export default function Page() {
 
   return (
     <div className="flex items-center justify-center py-20 px-4">
-      <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md border border-slate-100">
+      <div className="bg-surface p-10 rounded-3xl shadow-xl w-full max-w-md border border-border">
         <h2 className="text-3xl font-bold mb-6 text-center">
           Inicio de Sesión para Organizaciones
         </h2>
@@ -60,12 +60,12 @@ export default function Page() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2">
+            <label className="block text-sm font-bold text-foreground mb-2">
               Correo
             </label>
             <input
               type="email"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
               placeholder="org@pucp.edu.pe"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -73,12 +73,12 @@ export default function Page() {
             />
           </div>
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2">
+            <label className="block text-sm font-bold text-foreground mb-2">
               Contraseña
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -88,20 +88,20 @@ export default function Page() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-brand-600 text-white py-4 rounded-2xl font-bold hover:bg-brand-700 transition-colors shadow-lg shadow-brand-100 disabled:opacity-50"
+            className="w-full bg-cta text-white py-4 rounded-2xl font-bold hover:bg-primary transition-colors shadow-lg disabled:opacity-50"
           >
             {loading ? 'Ingresando...' : 'Ingresar'}
           </button>
         </form>
 
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-center text-sm text-slate-700">
+        <div className="mt-6 rounded-2xl border border-accent bg-accent-soft px-4 py-4 text-center text-sm text-primary">
           Tienes una organización estudiantil de la PUCP y quieres usar la
           plataforma?{' '}
           <a
             href="https://dsc.inf.pucp.edu.pe/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-emerald-600 underline underline-offset-2"
+            className="font-semibold text-cta underline underline-offset-2"
           >
             ¡Contáctanos!
           </a>

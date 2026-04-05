@@ -76,7 +76,7 @@ export default function EventDetailPage({
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-slate-500">Cargando evento...</div>
+        <div className="text-muted">Cargando evento...</div>
       </div>
     );
   }
@@ -118,7 +118,7 @@ export default function EventDetailPage({
       <div className="flex items-center justify-between mb-8">
         <button
           onClick={() => router.push(backDestination)}
-          className="flex items-center text-slate-500 hover:text-brand-600 transition-colors font-medium"
+          className="flex items-center text-muted hover:text-primary transition-colors font-medium"
         >
           <svg
             className="w-5 h-5 mr-1"
@@ -139,7 +139,7 @@ export default function EventDetailPage({
           <div className="flex gap-2">
             <Link
               href={`${appendReturnTo(`/events/${id}/edit`, backDestination)}&backTo=${encodeURIComponent(editBackTo)}`}
-              className="flex items-center gap-1 px-4 py-2 bg-slate-100 text-slate-700 rounded-xl font-semibold text-sm hover:bg-slate-200 transition-colors"
+              className="flex items-center gap-1 px-4 py-2 bg-surface-soft text-muted rounded-xl font-semibold text-sm hover:bg-cta-soft hover:text-primary transition-colors"
             >
               <svg
                 className="w-4 h-4"
@@ -179,7 +179,7 @@ export default function EventDetailPage({
         )}
       </div>
 
-      <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+      <div className="bg-surface rounded-3xl shadow-xl overflow-hidden border border-border">
         <div className="relative h-96">
           {bannerSrc ? (
             <>
@@ -191,15 +191,15 @@ export default function EventDetailPage({
               />
             </>
           ) : (
-            <div className="w-full h-full bg-linear-to-br from-brand-600 to-slate-300" />
+            <div className="w-full h-full bg-linear-to-br from-primary to-cta-soft" />
           )}
-          <div className="absolute inset-0 bg-linear-to-t from-slate-900/80 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent" />
           <div className="absolute bottom-8 left-8 right-8">
             <div className="flex gap-2 mb-4">
               {eventCategories.map((c) => (
                 <span
                   key={c.id}
-                  className="bg-brand-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
+                  className="bg-cta text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"
                 >
                   {c.name}
                 </span>
@@ -215,10 +215,10 @@ export default function EventDetailPage({
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2 space-y-8">
               <div>
-                <h3 className="text-xl font-bold text-slate-800 mb-4">
+                <h3 className="text-xl font-bold text-foreground mb-4">
                   Información
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-lg whitespace-pre-wrap wrap-break-word">
+                <p className="text-muted leading-relaxed text-lg whitespace-pre-wrap wrap-break-word">
                   {event.description}
                 </p>
               </div>
@@ -226,16 +226,16 @@ export default function EventDetailPage({
               {org && (
                 <div
                   onClick={() => setIsOrgModalOpen(true)}
-                  className="bg-slate-50 p-6 rounded-2xl border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors group"
+                  className="bg-surface-soft p-6 rounded-2xl border border-border cursor-pointer hover:bg-cta-soft transition-colors group"
                 >
                   <div className="flex justify-between items-center mb-4">
-                    <h4 className="font-bold text-slate-800">Organización</h4>
-                    <span className="text-brand-600 text-xs font-bold group-hover:translate-x-1 transition-transform">
+                    <h4 className="font-bold text-foreground">Organización</h4>
+                    <span className="text-primary text-xs font-bold group-hover:translate-x-1 transition-transform">
                       Ver Perfil
                     </span>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-100 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-primary-soft flex items-center justify-center">
                       {org.image ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
@@ -244,16 +244,16 @@ export default function EventDetailPage({
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        <span className="text-brand-600 font-bold">
+                        <span className="text-primary font-bold">
                           {org.name?.charAt(0) || '?'}
                         </span>
                       )}
                     </div>
                     <div>
-                      <div className="font-bold text-slate-900">
+                      <div className="font-bold text-foreground">
                         {org.name || 'Organización'}
                       </div>
-                      <div className="text-sm text-slate-500">{org.email}</div>
+                      <div className="text-sm text-muted">{org.email}</div>
                     </div>
                   </div>
                 </div>
@@ -261,12 +261,12 @@ export default function EventDetailPage({
             </div>
 
             <div className="space-y-6">
-              <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm sticky top-24">
+              <div className="p-6 bg-surface rounded-2xl border border-border shadow-sm sticky top-24">
                 <div className="space-y-4 mb-6">
                   <div className="flex items-start gap-3">
-                    <div className="p-2 bg-brand-50 rounded-lg">
+                    <div className="p-2 bg-primary-soft rounded-lg">
                       <svg
-                        className="w-5 h-5 text-brand-600"
+                        className="w-5 h-5 text-primary"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -280,17 +280,17 @@ export default function EventDetailPage({
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase">
+                      <p className="text-xs font-bold text-muted uppercase">
                         Fecha y Hora
                       </p>
-                      <p className="text-sm text-slate-800 font-semibold">
+                      <p className="text-sm text-foreground font-semibold">
                         {startDate.toLocaleDateString('es-PE', {
                           weekday: 'long',
                           month: 'long',
                           day: 'numeric',
                         })}
                       </p>
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-muted">
                         {startDate.toLocaleTimeString([], {
                           hour: '2-digit',
                           minute: '2-digit',
@@ -305,9 +305,9 @@ export default function EventDetailPage({
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="p-2 bg-brand-50 rounded-lg">
+                    <div className="p-2 bg-primary-soft rounded-lg">
                       <svg
-                        className="w-5 h-5 text-brand-600"
+                        className="w-5 h-5 text-primary"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -327,10 +327,10 @@ export default function EventDetailPage({
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-slate-400 uppercase">
+                      <p className="text-xs font-bold text-muted uppercase">
                         Lugar
                       </p>
-                      <p className="text-sm text-slate-800 font-semibold">
+                      <p className="text-sm text-foreground font-semibold">
                         {event.location}
                       </p>
                     </div>
@@ -343,7 +343,7 @@ export default function EventDetailPage({
                       href={event.registrationLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full bg-brand-600 text-white text-center py-3 rounded-xl font-bold hover:bg-brand-700 transition-colors shadow-lg shadow-brand-200"
+                      className="block w-full bg-cta text-white text-center py-3 rounded-xl font-bold hover:bg-primary transition-colors shadow-lg"
                     >
                       Registrarse
                     </a>
@@ -353,7 +353,7 @@ export default function EventDetailPage({
                       href={buildWhatsappUrl(event.whatsappContact)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block w-full bg-green-500 text-white text-center py-3 rounded-xl font-bold hover:bg-green-600 transition-colors flex items-center justify-center"
+                      className="w-full bg-green-500 text-white text-center py-3 rounded-xl font-bold hover:bg-green-600 transition-colors flex items-center justify-center"
                     >
                       <svg
                         className="w-5 h-5 mr-2"
@@ -374,12 +374,12 @@ export default function EventDetailPage({
 
       {/* Modal de confirmación de borrado */}
       {isDeleteModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[110] flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">
+        <div className="fixed inset-0 bg-primary/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
+          <div className="bg-surface rounded-3xl w-full max-w-md shadow-2xl p-8">
+            <h2 className="text-xl font-bold text-foreground mb-3">
               ¿Eliminar evento?
             </h2>
-            <p className="text-slate-600 mb-6">
+            <p className="text-muted mb-6">
               Esta acción no se puede deshacer. El evento será eliminado
               permanentemente.
             </p>
@@ -394,7 +394,7 @@ export default function EventDetailPage({
                   setIsDeleteModalOpen(false);
                   setDeleteError('');
                 }}
-                className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 rounded-xl border border-border text-muted font-bold hover:bg-surface-soft hover:text-primary transition-colors"
               >
                 Cancelar
               </button>
@@ -411,9 +411,9 @@ export default function EventDetailPage({
       )}
 
       {isOrgModalOpen && org && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[110] flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-xl shadow-2xl overflow-hidden">
-            <div className="relative h-32 bg-brand-600">
+        <div className="fixed inset-0 bg-primary/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
+          <div className="bg-surface rounded-3xl w-full max-w-xl shadow-2xl overflow-hidden">
+            <div className="relative h-32 bg-primary">
               <button
                 onClick={() => setIsOrgModalOpen(false)}
                 className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
@@ -433,7 +433,7 @@ export default function EventDetailPage({
                 </svg>
               </button>
               <div className="absolute -bottom-10 left-8">
-                <div className="w-24 h-24 rounded-2xl shadow-lg border-4 border-white overflow-hidden bg-white flex items-center justify-center">
+                <div className="w-24 h-24 rounded-2xl shadow-lg border-4 border-surface overflow-hidden bg-surface flex items-center justify-center">
                   {org.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -442,7 +442,7 @@ export default function EventDetailPage({
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="text-brand-600 text-3xl font-bold">
+                    <span className="text-primary text-3xl font-bold">
                       {org.name?.charAt(0) || '?'}
                     </span>
                   )}
@@ -450,17 +450,17 @@ export default function EventDetailPage({
               </div>
             </div>
             <div className="pt-14 p-8">
-              <h2 className="text-2xl font-bold text-slate-900 mb-1">
+              <h2 className="text-2xl font-bold text-foreground mb-1">
                 {org.name || 'Organización estudiantil'}
               </h2>
-              <p className="text-slate-500 mb-6">{org.email}</p>
+              <p className="text-muted mb-6">{org.email}</p>
 
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                  <h4 className="text-xs font-bold text-muted uppercase tracking-widest mb-2">
                     Sobre la organización
                   </h4>
-                  <p className="text-slate-600 leading-relaxed italic whitespace-pre-line break-words">
+                  <p className="text-muted leading-relaxed italic whitespace-pre-line wrap-break-word">
                     {org.description
                       || 'La organización aún no ha proporcionado una descripción.'}
                   </p>
@@ -468,7 +468,7 @@ export default function EventDetailPage({
 
                 {org.contacts && org.contacts.length > 0 && (
                   <div>
-                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                    <h4 className="text-xs font-bold text-muted uppercase tracking-widest mb-3">
                       Información de contacto
                     </h4>
                     <div className="flex flex-wrap gap-3">
@@ -484,7 +484,7 @@ export default function EventDetailPage({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 hover:border-brand-300 hover:text-brand-600 transition-all text-sm font-medium"
+                          className="flex items-center gap-2 px-4 py-2 bg-surface-soft border border-border rounded-xl text-muted hover:border-accent hover:text-primary transition-all text-sm font-medium"
                         >
                           {contact.type === 'whatsapp' && (
                             <svg
@@ -497,7 +497,7 @@ export default function EventDetailPage({
                           )}
                           {contact.type === 'email' && (
                             <svg
-                              className="w-4 h-4 text-blue-500"
+                              className="w-4 h-4 text-accent"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -512,7 +512,7 @@ export default function EventDetailPage({
                           )}
                           {contact.type === 'link' && (
                             <svg
-                              className="w-4 h-4 text-brand-500"
+                              className="w-4 h-4 text-primary"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -537,10 +537,10 @@ export default function EventDetailPage({
                 )}
               </div>
             </div>
-            <div className="bg-slate-50 p-6 flex justify-end">
+            <div className="bg-surface-soft p-6 flex justify-end">
               <button
                 onClick={() => setIsOrgModalOpen(false)}
-                className="bg-slate-900 text-white px-6 py-2 rounded-xl font-bold hover:bg-slate-800 transition-colors"
+                className="bg-primary text-white px-6 py-2 rounded-xl font-bold hover:bg-cta transition-colors"
               >
                 Cerrar perfil
               </button>
