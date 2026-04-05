@@ -14,6 +14,7 @@ import {
   validateWhatsappContact,
   WHATSAPP_CONSTRAINTS,
 } from '@/lib/validation/whatsapp';
+import { validateEventDateRange } from '@/lib/validation/event';
 
 function NewEventPageContent() {
   const router = useRouter();
@@ -41,6 +42,8 @@ function NewEventPageContent() {
   const whatsappError = validateWhatsappContact(whatsappContact);
   const visibleWhatsappError =
     whatsappContact.length === 0 ? null : whatsappError;
+  const visibleDateError =
+    startDate && endDate ? validateEventDateRange(startDate, endDate) : null;
 
   useEffect(() => {
     getAllCategories().then(setCategories).catch(console.error);
@@ -86,6 +89,12 @@ function NewEventPageContent() {
 
     if (whatsappError) {
       setFormError(whatsappError);
+      return;
+    }
+
+    const dateRangeError = validateEventDateRange(startDate, endDate);
+    if (dateRangeError) {
+      setFormError(dateRangeError);
       return;
     }
 
@@ -292,6 +301,14 @@ function NewEventPageContent() {
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
+              onChange={(e) => {
+                const nextStartDate = e.target.value;
+                setStartDate(nextStartDate);
+
+                if (endDate && nextStartDate && endDate < nextStartDate) {
+                  setEndDate('');
+                }
+              }}
             />
           </div>
           <div>
@@ -304,9 +321,14 @@ function NewEventPageContent() {
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
+              min={startDate || undefined}
+              disabled={!startDate}
             />
           </div>
         </div>
+        {visibleDateError && (
+          <p className="-mt-2 text-sm text-red-600">{visibleDateError}</p>
+        )}
 
         {/* Categorías */}
         {categories.length > 0 && (
