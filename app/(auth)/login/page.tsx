@@ -94,14 +94,14 @@ export default function Page() {
           </button>
         </form>
 
-        <div className="mt-6 rounded-2xl border border-accent bg-accent-soft px-4 py-4 text-center text-sm text-primary">
+        <div className="mt-6 rounded-2xl border border-cta bg-cta-soft px-4 py-4 text-center text-sm text-primary">
           Tienes una organización estudiantil de la PUCP y quieres usar la
           plataforma?{' '}
           <a
             href="https://dsc.inf.pucp.edu.pe/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-cta underline underline-offset-2"
+            className="font-semibold text-primary underline underline-offset-2"
           >
             ¡Contáctanos!
           </a>
