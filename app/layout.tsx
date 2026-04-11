@@ -7,8 +7,9 @@ import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Wegou - Eventos comunitarios en PUCP',
-  description: 'Encuentra las mejores actividades organizadas por estudiantes.',
+  title: 'Kaygo - Eventos comunitarios en PUCP',
+  description:
+    'Encuentra las mejores actividades organizadas por estudiantes en la PUCP.',
 };
 
 export default function RootLayout({
