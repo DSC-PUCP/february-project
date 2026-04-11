@@ -1,89 +1,90 @@
 @import 'tailwindcss';
 
 :root {
-    /* Fondos base y superficies de UI */
-    --bg: #f4f7f9;
-    --surface: #ffffff;
-    --surface-soft: #e9eef3;
+  /* Fondos base y superficies de UI */
+  --bg: #f4f7f9;
+  --surface: #ffffff;
+  --surface-soft: #e9eef3;
 
-    /* Tipografia principal y secundaria */
-    --text: #2f2e41;
-    --muted: #5c637d;
+  /* Tipografia principal y secundaria */
+  --text: #2f2e41;
+  --muted: #5c637d;
 
-    /* Colores de accion y navegacion (cta = call to action) */
-    --primary: #1b2577;
-    --primary-soft: #c4cfff;
-    --cta: #0231f6;
-    --cta-soft: #dce6ff;
+  /* Colores de accion y navegacion (cta = call to action) */
+  --primary: #1b2577;
+  --primary-soft: #c4cfff;
+  --cta: #0231f6;
+  --cta-soft: #dce6ff;
 
-    /* Acentos para estados informativos */
-    --accent: #cff12c;
-    --accent-soft: #f3fcc8;
+  /* Acentos para estados informativos */
+  --accent: #cff12c;
+  --accent-soft: #f3fcc8;
 
-    /* Borde neutral */
-    --border: #d5deeb;
+  /* Borde neutral */
+  --border: #d5deeb;
 
-    /* Alias semanticos usados por layout */
-    --background: var(--bg);
-    --foreground: var(--text);
+  /* Alias semanticos usados por layout */
+  --background: var(--bg);
+  --foreground: var(--text);
 }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer base {
-    button:not(:disabled),
-    [role='button']:not([aria-disabled='true']) {
-        cursor: pointer;
-    }
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
+  }
 
-    button:disabled,
-    [role='button'][aria-disabled='true'] {
-        cursor: not-allowed;
-    }
+  button:disabled,
+  [role='button'][aria-disabled='true'] {
+    cursor: not-allowed;
+  }
 }
 
 @layer utilities {
-    .text-balance {
-        text-wrap: balance;
-    }
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-surface: var(--surface);
-    --color-surface-soft: var(--surface-soft);
-    --color-muted: var(--muted);
-    --color-primary: var(--primary);
-    --color-primary-soft: var(--primary-soft);
-    --color-cta: var(--cta);
-    --color-cta-soft: var(--cta-soft);
-    --color-accent: var(--accent);
-    --color-accent-soft: var(--accent-soft);
-    --color-border: var(--border);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-cta: var(--cta);
+  --color-cta-soft: var(--cta-soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-border: var(--border);
 
-    --font-sans: Arial, Helvetica, sans-serif;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
 }
 
 @layer components {
-    .btn-cta {
-        background: var(--cta);
-        color: #fff;
-    }
+  .btn-cta {
+    background: var(--cta);
+    color: #fff;
+  }
 
-    .btn-cta:hover {
-        filter: brightness(0.95);
-    }
+  .btn-cta:hover {
+    filter: brightness(0.95);
+  }
 
-    .badge-accent {
-        background: var(--accent-soft);
-        color: var(--primary);
-        border: 1px solid var(--accent);
-    }
+  .badge-accent {
+    background: var(--accent-soft);
+    color: var(--primary);
+    border: 1px solid var(--accent);
+  }
 }
