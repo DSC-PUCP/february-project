@@ -1,4 +1,4 @@
-# February Project: community-events
+# kaygo
 
 Plataforma web que permite a organizaciones estudiantiles de la PUCP subir y administrar sus eventos, para proveer a los
 estudiantes y al público general una forma fácil y rápida de descubrir actividades futuras de estos.
@@ -12,16 +12,16 @@ Más detalles se pueden ver en el [roadmap](https://github.com/orgs/DSC-PUCP/pro
 ### Para las organizaciones
 
 - Read/Update de cuenta:
-  - Login (contraseña)
-  - Descripción
-  - Métodos de contacto
+    - Login (contraseña)
+    - Descripción
+    - Métodos de contacto
 - CRUD de eventos:
-  - Título y descripción
-  - Fecha y hora de inicio/fin
-  - Lugar
-  - Categorías
-  - Imagen de portada
-  - Contacto para inscripción o detalles (email, WhatsApp, formulario externo)
+    - Título y descripción
+    - Fecha y hora de inicio/fin
+    - Lugar
+    - Categorías
+    - Imagen de portada
+    - Contacto para inscripción o detalles (email, WhatsApp, formulario externo)
 
 ### Para el público
 

@@ -4,8 +4,8 @@ import type { auth } from '@/lib/auth';
 
 const baseURL =
   typeof window !== 'undefined'
-    ? `${window.location.origin}/community-events/api/auth`
-    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/community-events/api/auth`;
+    ? `${window.location.origin}/kaygo/api/auth`
+    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/kaygo/api/auth`;
 
 export const { signIn, signUp, signOut, useSession, getSession } =
   createAuthClient({

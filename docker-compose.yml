@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: community-events-app
+    container_name: kaygo-app
     restart: unless-stopped
     ports:
       - '3000:3000'
@@ -11,8 +11,8 @@ services:
       - NODE_ENV=production
       - DATABASE_URL=/app/data/sqlite.db
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
-      - BETTER_AUTH_URL=https://dsc.inf.pucp.edu.pe/community-events
-      - NEXT_PUBLIC_APP_URL=https://dsc.inf.pucp.edu.pe/community-events
+      - BETTER_AUTH_URL=https://dsc.inf.pucp.edu.pe/kaygo
+      - NEXT_PUBLIC_APP_URL=https://dsc.inf.pucp.edu.pe/kaygo
       - UPLOAD_DIR=/app/uploads
     volumes:
       - ./data:/app/data

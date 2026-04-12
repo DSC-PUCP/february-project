@@ -14,5 +14,5 @@ export async function saveImage(
   const path = join(uploadDir, parsedFileName);
 
   await writeFile(path, buffer);
-  return `/community-events/uploads/${parsedFileName}`;
+  return `/kaygo/uploads/${parsedFileName}`;
 }

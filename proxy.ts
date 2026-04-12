@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import { auth } from './lib/auth';
 
 export async function proxy(request: NextRequest) {
@@ -13,20 +13,16 @@ export async function proxy(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/change-password');
 
   if (isAuthPage && session?.user) {
-    return NextResponse.redirect(
-      new URL('/community-events/dashboard', request.url),
-    );
+    return NextResponse.redirect(new URL('/kaygo/dashboard', request.url));
   }
 
   if (isProtectedRoute && !session?.user) {
-    return NextResponse.redirect(
-      new URL('/community-events/login', request.url),
-    );
+    return NextResponse.redirect(new URL('/kaygo/login', request.url));
   }
 
   if (session?.user?.isFirstLogin && !isChangePasswordPage) {
     return NextResponse.redirect(
-      new URL('/community-events/change-password', request.url),
+      new URL('/kaygo/change-password', request.url),
     );
   }
 
