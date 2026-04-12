@@ -43,7 +43,26 @@ Más detalles se pueden ver en el [roadmap](https://github.com/orgs/DSC-PUCP/pro
 
 ## Deploy
 
-TODO
+Arquitectura:
+
+- `app`: Next.js 16 standalone en puerto interno `3000` (sin exposición directa al host).
+- `nginx`: publica el puerto `80` y enruta `/kaygo/` a `app`.
+- `uploads`: volumen compartido para servir `/kaygo/uploads/*` directamente desde Nginx.
+- `data`: volumen persistente para SQLite.
+
+1. Copia y ajusta variables de entorno para producción:
+
+```bash
+cp .env.example .env.production
+```
+
+2. Levanta Docker compose:
+
+```bash
+docker compose up -d --build
+```
+
+4. La app queda expuesta en `http://localhost/kaygo`.
 
 ### Bootstrap de cuenta admin
 

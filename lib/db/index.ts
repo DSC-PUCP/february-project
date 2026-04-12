@@ -2,6 +2,8 @@ import { env } from '../env';
 import * as schema from './schema';
 import { drizzle as drizzleBetterSqlite } from 'drizzle-orm/better-sqlite3';
 import { drizzle as drizzleLibsql } from 'drizzle-orm/libsql';
+import { mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 
 type BetterSqliteDb = ReturnType<typeof drizzleBetterSqlite<typeof schema>>;
 type LibSqlDb = ReturnType<typeof drizzleLibsql<typeof schema>>;
@@ -18,6 +20,11 @@ if (process.env.VERCEL) {
 
   db = drizzleLibsql(client, { schema });
 } else {
+  const isRemoteDb = /^(libsql|https?):\/\//i.test(env.DATABASE_URL);
+  if (!isRemoteDb) {
+    mkdirSync(dirname(env.DATABASE_URL), { recursive: true });
+  }
+
   const Database = (await import('better-sqlite3')).default;
   const sqlite = new Database(env.DATABASE_URL);
   db = drizzleBetterSqlite(sqlite, { schema });
