@@ -3,3 +3,7 @@ node_modules
 .git
 *.log
 .env*.local
+data
+public/uploads
+sqlite.db
+tsconfig.tsbuildinfo

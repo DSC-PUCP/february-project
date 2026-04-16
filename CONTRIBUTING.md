@@ -5,7 +5,7 @@
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/DSC-PUCP/community-events
+   git clone https://github.com/DSC-PUCP/kaygo
    ```
 
 2. Copia el `.env.example` a `.env`.
@@ -91,7 +91,8 @@ Esto garantiza que tu nueva rama partirá del estado más reciente del repositor
 > git reset --hard HEAD~1
 > ```
 >
-> Con esto la nueva rama conserva el commit y `main` vuelve al estado anterior. No uses `--hard` si ya hiciste `git push`, ese caso necesitaría otra solución.
+> Con esto la nueva rama conserva el commit y `main` vuelve al estado anterior. No uses `--hard` si ya hiciste
+> `git push`, ese caso necesitaría otra solución.
 
 2. Crea una rama desde `main`, usando un prefijo de acuerdo al tipo de cambio. Por ejemplo:
 
@@ -109,7 +110,8 @@ git commit -am "feat: agrega nuevas secciones al dashboard"
 git push --set-upstream origin feat/mi-nueva-funcionalidad
 ```
 
-4. Abre un PR desde esa branch hacia `main`. Para esto, abre el repo en GitHub y te aparecerá una opción para abrir PR (pull request):
+4. Abre un PR desde esa branch hacia `main`. Para esto, abre el repo en GitHub y te aparecerá una opción para abrir PR (
+   pull request):
    > <img width="924" height="151" alt="imagen" src="https://github.com/user-attachments/assets/773d9eab-7542-425b-9f14-8673a14ab2c6" />
 
 Al darle click, puedes ponerle una descripción o título describiendo los cambios. Luego "Create pull request".

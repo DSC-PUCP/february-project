@@ -47,7 +47,7 @@ export default function Select({
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const buttonBase = `flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 text-sm font-medium outline-none transition-all focus:ring-2 focus:ring-brand-500 focus:border-transparent ${className}`;
+  const buttonBase = `flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-border bg-surface text-muted text-sm font-medium outline-none transition-all focus:ring-2 focus:ring-cta focus:border-transparent ${className}`;
 
   return (
     <div ref={ref} className={fixedWidth ? 'relative inline-grid' : 'relative'}>
@@ -74,7 +74,7 @@ export default function Select({
       >
         <span className="whitespace-nowrap">{selected?.label ?? ''}</span>
         <svg
-          className={`w-3.5 h-3.5 text-slate-400 shrink-0 transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
+          className={`w-3.5 h-3.5 text-muted shrink-0 transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -89,7 +89,7 @@ export default function Select({
       </button>
 
       {open && (
-        <ul className="absolute z-50 top-full mt-1 min-w-full bg-white border border-slate-200 rounded-xl shadow-md overflow-hidden py-1">
+        <ul className="absolute z-50 top-full mt-1 min-w-full bg-surface border border-border rounded-xl shadow-md overflow-hidden py-1">
           {options.map((opt) => (
             <li
               key={opt.value}
@@ -99,8 +99,8 @@ export default function Select({
               }}
               className={`px-3 py-2 text-sm cursor-pointer select-none transition-colors ${
                 opt.value === value
-                  ? 'bg-brand-100 text-brand-700 font-semibold'
-                  : 'text-slate-600 hover:bg-slate-50 font-medium'
+                  ? 'bg-cta-soft text-primary font-semibold'
+                  : 'text-muted hover:bg-surface-soft hover:text-primary font-medium'
               }`}
             >
               {opt.label}

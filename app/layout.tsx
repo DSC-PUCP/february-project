@@ -7,8 +7,9 @@ import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CampusPulse - Discover Campus Events',
-  description: 'Encuentra las mejores actividades organizadas por estudiantes.',
+  title: 'Kaygo - Eventos comunitarios en PUCP',
+  description:
+    'Encuentra las mejores actividades organizadas por estudiantes en la PUCP.',
 };
 
 export default function RootLayout({
@@ -22,11 +23,11 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main className="flex-1">{children}</main>
-          <footer className="bg-slate-900 text-slate-100 py-6">
+          <footer className="bg-primary text-surface py-6 border-t border-border">
             <div className=" max-w-7xl mx-auto px-4 text-center text-xs ">
               Hecho con 💖 por{' '}
               <Link
-                className={'text-emerald-400'}
+                className={'text-accent font-semibold'}
                 href={'https://dsc.inf.pucp.edu.pe/'}
               >
                 DSC PUCP

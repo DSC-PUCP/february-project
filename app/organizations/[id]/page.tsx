@@ -56,7 +56,7 @@ export default function OrgProfilePage({
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-slate-500">Cargando perfil...</div>
+        <div className="text-muted">Cargando perfil...</div>
       </div>
     );
   }
@@ -74,7 +74,7 @@ export default function OrgProfilePage({
       {/* Back button */}
       <button
         onClick={() => router.push(backDestination)}
-        className="flex items-center text-slate-500 hover:text-brand-600 transition-colors mb-8 font-medium"
+        className="flex items-center text-muted hover:text-primary transition-colors mb-8 font-medium"
       >
         <svg
           className="w-5 h-5 mr-1"
@@ -93,8 +93,8 @@ export default function OrgProfilePage({
       </button>
 
       {/* Header card */}
-      <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden mb-8">
-        <div className="h-36 bg-linear-to-r from-brand-500 to-purple-600" />
+      <div className="bg-surface rounded-3xl shadow-sm border border-border overflow-hidden mb-8">
+        <div className="h-36 bg-linear-to-r from-primary to-cta" />
         <div className="px-8 pb-8">
           <div className="-mt-12 mb-6">
             {org.image ? (
@@ -102,25 +102,25 @@ export default function OrgProfilePage({
               <img
                 src={org.image}
                 alt={org.name ?? 'Organización'}
-                className="w-24 h-24 rounded-2xl border-4 border-white shadow-lg object-cover"
+                className="w-24 h-24 rounded-2xl border-4 border-surface shadow-lg object-cover"
               />
             ) : (
-              <div className="w-24 h-24 rounded-2xl border-4 border-white shadow-lg bg-white flex items-center justify-center text-brand-600 text-4xl font-bold">
+              <div className="w-24 h-24 rounded-2xl border-4 border-surface shadow-lg bg-surface flex items-center justify-center text-primary text-4xl font-bold">
                 {org.name?.charAt(0)?.toUpperCase() ?? '?'}
               </div>
             )}
           </div>
-          <h1 className="text-3xl font-extrabold text-slate-900 mb-1">
+          <h1 className="text-3xl font-extrabold text-foreground mb-1">
             {org.name ?? 'Organización'}
           </h1>
-          <p className="text-slate-500 mb-6">{org.email}</p>
+          <p className="text-muted mb-6">{org.email}</p>
 
           {org.description && (
             <div className="mb-6">
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+              <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-2">
                 Acerca de
               </h3>
-              <p className="text-slate-600 leading-relaxed whitespace-pre-line wrap-break-word">
+              <p className="text-muted leading-relaxed whitespace-pre-line wrap-break-word">
                 {org.description}
               </p>
             </div>
@@ -129,7 +129,7 @@ export default function OrgProfilePage({
           {/* Contacts */}
           {Array.isArray(org.contacts) && org.contacts.length > 0 && (
             <div>
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+              <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3">
                 Contacto
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -145,7 +145,7 @@ export default function OrgProfilePage({
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 hover:border-brand-300 hover:text-brand-600 transition-all text-sm font-medium"
+                    className="flex items-center gap-2 px-4 py-2 bg-surface-soft border border-border rounded-xl text-muted hover:border-accent hover:text-primary transition-all text-sm font-medium"
                   >
                     {contact.type === 'whatsapp' && (
                       <svg
@@ -158,7 +158,7 @@ export default function OrgProfilePage({
                     )}
                     {contact.type === 'email' && (
                       <svg
-                        className="w-4 h-4 text-blue-500"
+                        className="w-4 h-4 text-accent"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -173,7 +173,7 @@ export default function OrgProfilePage({
                     )}
                     {contact.type === 'link' && (
                       <svg
-                        className="w-4 h-4 text-brand-500"
+                        className="w-4 h-4 text-primary"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -208,26 +208,24 @@ export default function OrgProfilePage({
         ].map((stat) => (
           <div
             key={stat.label}
-            className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 text-center"
+            className="bg-surface rounded-2xl border border-border shadow-sm p-5 text-center"
           >
-            <div className="text-3xl font-extrabold text-brand-600 mb-1">
+            <div className="text-3xl font-extrabold text-primary mb-1">
               {stat.value}
             </div>
-            <div className="text-sm text-slate-500 font-medium">
-              {stat.label}
-            </div>
+            <div className="text-sm text-muted font-medium">{stat.label}</div>
           </div>
         ))}
       </div>
 
       {/* Events list */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
-        <h2 className="text-xl font-bold text-slate-900 mb-6">
+      <div className="bg-surface rounded-3xl border border-border shadow-sm p-8">
+        <h2 className="text-xl font-bold text-foreground mb-6">
           Eventos de la organización
         </h2>
 
         {events.length === 0 ? (
-          <div className="text-center py-10 text-slate-500">
+          <div className="text-center py-10 text-muted">
             Esta organización aún no ha publicado eventos.
           </div>
         ) : (
@@ -235,7 +233,7 @@ export default function OrgProfilePage({
             {/* Upcoming */}
             {upcomingEvents.length > 0 && (
               <div>
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3">
                   Próximos
                 </h3>
                 <div className="space-y-3">
@@ -253,7 +251,7 @@ export default function OrgProfilePage({
             {/* Past */}
             {pastEvents.length > 0 && (
               <div className="mt-6">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                <h3 className="text-xs font-bold text-muted uppercase tracking-widest mb-3">
                   Realizados
                 </h3>
                 <div className="space-y-3">
@@ -293,7 +291,7 @@ function EventRow({
   return (
     <Link
       href={appendReturnTo(`/events/${event.id}`, returnTo)}
-      className="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-brand-200 hover:bg-brand-50/30 transition-all group"
+      className="flex items-center gap-4 p-4 rounded-xl border border-border hover:border-accent hover:bg-accent-soft/40 transition-all group"
     >
       {event.banner && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -306,23 +304,23 @@ function EventRow({
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">
           <span
-            className={`text-xs font-bold px-2 py-0.5 rounded-full ${isPast ? 'bg-slate-100 text-slate-500' : 'bg-green-100 text-green-700'}`}
+            className={`text-xs font-bold px-2 py-0.5 rounded-full ${isPast ? 'bg-surface-soft text-muted' : 'bg-green-100 text-green-700'}`}
           >
             {isPast ? 'Pasado' : 'Próximo'}
           </span>
           {eventCats.slice(0, 2).map((c) => (
             <span
               key={c.id}
-              className="text-xs font-semibold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full"
+              className="text-xs font-semibold text-primary bg-primary-soft px-2 py-0.5 rounded-full"
             >
               {c.name}
             </span>
           ))}
         </div>
-        <p className="font-bold text-slate-900 group-hover:text-brand-600 transition-colors truncate">
+        <p className="font-bold text-foreground group-hover:text-primary transition-colors truncate">
           {event.title}
         </p>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-muted">
           {start.toLocaleDateString('es-PE', {
             day: 'numeric',
             month: 'short',
@@ -332,7 +330,7 @@ function EventRow({
         </p>
       </div>
       <svg
-        className="w-5 h-5 text-slate-300 group-hover:text-brand-400 shrink-0 transition-colors"
+        className="w-5 h-5 text-muted group-hover:text-primary shrink-0 transition-colors"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"

@@ -178,7 +178,7 @@ export default function EditOrganizationPage({
   if (pageLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-slate-500">Cargando...</div>
+        <div className="text-muted">Cargando...</div>
       </div>
     );
   }
@@ -187,12 +187,12 @@ export default function EditOrganizationPage({
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <p className="text-slate-700 font-semibold mb-4">
+          <p className="text-foreground font-semibold mb-4">
             No tienes permisos para editar esta organización.
           </p>
           <button
             onClick={() => router.push(returnTo)}
-            className="text-brand-600 hover:underline"
+            className="text-primary hover:underline"
           >
             Volver
           </button>
@@ -205,7 +205,7 @@ export default function EditOrganizationPage({
     <div className="max-w-2xl mx-auto px-4 py-10">
       <button
         onClick={() => router.push(returnTo)}
-        className="flex items-center text-slate-500 hover:text-brand-600 transition-colors mb-8 font-medium"
+        className="flex items-center text-muted hover:text-primary transition-colors mb-8 font-medium"
       >
         <svg
           className="w-5 h-5 mr-1"
@@ -223,7 +223,7 @@ export default function EditOrganizationPage({
         Volver
       </button>
 
-      <h1 className="text-3xl font-bold text-slate-900 mb-8">
+      <h1 className="text-3xl font-bold text-foreground mb-8">
         Editar Perfil de Organización
       </h1>
 
@@ -240,11 +240,11 @@ export default function EditOrganizationPage({
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 bg-white rounded-2xl border border-slate-200 shadow-sm p-8"
+        className="space-y-6 bg-surface rounded-2xl border border-border shadow-sm p-8"
       >
         {/* Nombre */}
         <div>
-          <label className="block text-sm font-bold text-slate-700 mb-2">
+          <label className="block text-sm font-bold text-foreground mb-2">
             Nombre de la organización *
           </label>
           <input
@@ -253,22 +253,18 @@ export default function EditOrganizationPage({
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={ORGANIZATION_LIMITS.name.max}
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
             placeholder="Nombre de tu organización"
           />
           <div className="mt-2 flex items-center justify-between text-xs">
-            <span
-              className={visibleNameError ? 'text-red-600' : 'text-slate-400'}
-            >
+            <span className={visibleNameError ? 'text-red-600' : 'text-muted'}>
               {visibleNameError
                 ? visibleNameError
                 : `Maximo ${ORGANIZATION_LIMITS.name.max} caracteres.`}
             </span>
             <span
               className={
-                visibleNameError
-                  ? 'font-semibold text-red-600'
-                  : 'text-slate-500'
+                visibleNameError ? 'font-semibold text-red-600' : 'text-muted'
               }
             >
               {name.length}/{ORGANIZATION_LIMITS.name.max}
@@ -278,7 +274,7 @@ export default function EditOrganizationPage({
 
         {/* Descripción */}
         <div>
-          <label className="block text-sm font-bold text-slate-700 mb-2">
+          <label className="block text-sm font-bold text-foreground mb-2">
             Descripción
           </label>
           <textarea
@@ -286,22 +282,18 @@ export default function EditOrganizationPage({
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
             maxLength={ORGANIZATION_LIMITS.description.max}
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta resize-none"
             placeholder="Cuéntanos sobre tu organización..."
           />
           <div className="mt-2 flex items-center justify-between text-xs">
-            <span
-              className={descriptionError ? 'text-red-600' : 'text-slate-400'}
-            >
+            <span className={descriptionError ? 'text-red-600' : 'text-muted'}>
               {descriptionError
                 ? descriptionError
                 : `Maximo ${ORGANIZATION_LIMITS.description.max} caracteres.`}
             </span>
             <span
               className={
-                descriptionError
-                  ? 'font-semibold text-red-600'
-                  : 'text-slate-500'
+                descriptionError ? 'font-semibold text-red-600' : 'text-muted'
               }
             >
               {description.length}/{ORGANIZATION_LIMITS.description.max}
@@ -311,7 +303,7 @@ export default function EditOrganizationPage({
 
         {/* Avatar / Imagen */}
         <div>
-          <label className="block text-sm font-bold text-slate-700 mb-2">
+          <label className="block text-sm font-bold text-foreground mb-2">
             URL de imagen (avatar)
           </label>
           <div className="flex gap-3 items-start">
@@ -320,11 +312,11 @@ export default function EditOrganizationPage({
               <img
                 src={image}
                 alt="Avatar preview"
-                className="w-16 h-16 rounded-xl object-cover shrink-0 border border-slate-200"
+                className="w-16 h-16 rounded-xl object-cover shrink-0 border border-border"
               />
             )}
             {!image && (
-              <div className="w-16 h-16 rounded-xl bg-brand-100 flex items-center justify-center text-brand-600 text-2xl font-bold shrink-0">
+              <div className="w-16 h-16 rounded-xl bg-primary-soft flex items-center justify-center text-primary text-2xl font-bold shrink-0">
                 {name?.charAt(0)?.toUpperCase() || '?'}
               </div>
             )}
@@ -332,22 +324,22 @@ export default function EditOrganizationPage({
               type="url"
               value={image}
               onChange={(e) => setImage(e.target.value)}
-              className="flex-1 px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+              className="flex-1 px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
               placeholder="https://..."
             />
           </div>
         </div>
 
         {/* Contactos */}
-        <div className="border-t border-slate-100 pt-6">
+        <div className="border-t border-border pt-6">
           <div className="flex items-center justify-between mb-4">
-            <label className="text-sm font-bold text-slate-700">
+            <label className="text-sm font-bold text-foreground">
               Métodos de contacto
             </label>
             <button
               type="button"
               onClick={addContact}
-              className="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1"
+              className="text-sm font-semibold text-primary hover:text-cta flex items-center gap-1"
             >
               <svg
                 className="w-4 h-4"
@@ -367,7 +359,7 @@ export default function EditOrganizationPage({
           </div>
 
           {contacts.length === 0 && (
-            <p className="text-sm text-slate-400 italic">
+            <p className="text-sm text-muted italic">
               No has agregado métodos de contacto aún.
             </p>
           )}
@@ -389,9 +381,9 @@ export default function EditOrganizationPage({
                   {contact.type === 'whatsapp' ? (
                     <div className="flex-1">
                       <div
-                        className={`flex overflow-hidden rounded-xl border text-sm focus-within:ring-2 focus-within:ring-brand-500 ${contactErrors[idx] ? 'border-red-300' : 'border-slate-200'}`}
+                        className={`flex overflow-hidden rounded-xl border text-sm focus-within:ring-2 focus-within:ring-cta ${contactErrors[idx] ? 'border-red-300' : 'border-border'}`}
                       >
-                        <span className="flex items-center bg-slate-50 px-4 font-semibold text-slate-500 border-r border-slate-200">
+                        <span className="flex items-center bg-surface-soft px-4 font-semibold text-muted border-r border-border">
                           {WHATSAPP_CONSTRAINTS.countryCode}
                         </span>
                         <input
@@ -415,7 +407,7 @@ export default function EditOrganizationPage({
                       onChange={(e) =>
                         updateContact(idx, 'value', e.target.value)
                       }
-                      className={`flex-1 px-4 py-2.5 rounded-xl border outline-none focus:ring-2 focus:ring-brand-500 text-sm ${contactErrors[idx] ? 'border-red-300' : 'border-slate-200'}`}
+                      className={`flex-1 px-4 py-2.5 rounded-xl border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta text-sm ${contactErrors[idx] ? 'border-red-300' : 'border-border'}`}
                       placeholder={
                         contact.type === 'email'
                           ? 'org@pucp.edu.pe'
@@ -426,7 +418,7 @@ export default function EditOrganizationPage({
                   <button
                     type="button"
                     onClick={() => removeContact(idx)}
-                    className="p-2 text-slate-400 hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
+                    className="p-2 text-muted hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
                   >
                     <svg
                       className="w-4 h-4"
@@ -457,14 +449,14 @@ export default function EditOrganizationPage({
           <button
             type="button"
             onClick={() => router.push(returnTo)}
-            className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors"
+            className="flex-1 py-3 rounded-xl border border-border text-muted font-bold hover:bg-surface-soft hover:text-primary transition-colors"
           >
             Cancelar
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition-colors disabled:opacity-50"
+            className="flex-1 py-3 rounded-xl bg-cta text-white font-bold hover:bg-primary transition-colors disabled:opacity-50"
           >
             {loading ? 'Guardando...' : 'Guardar Cambios'}
           </button>

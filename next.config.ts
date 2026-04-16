@@ -4,20 +4,20 @@ const isVercel = !!process.env.VERCEL;
 
 const nextConfig: NextConfig = {
   ...(!isVercel && { output: 'standalone' }),
-  basePath: '/community-events',
-  assetPrefix: '/community-events',
+  basePath: '/kaygo',
+  assetPrefix: '/kaygo',
   async redirects() {
     return [
       {
         source: '/',
-        destination: '/community-events',
+        destination: '/kaygo',
         permanent: true,
         basePath: false,
       },
     ];
   },
   env: {
-    NEXT_PUBLIC_BASE_PATH: '/community-events',
+    NEXT_PUBLIC_BASE_PATH: '/kaygo',
   },
 
   experimental: {

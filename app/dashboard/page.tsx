@@ -75,7 +75,7 @@ export default function DashboardPage() {
   if (!session?.user) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-slate-500">Cargando...</div>
+        <div className="text-muted">Cargando...</div>
       </div>
     );
   }
@@ -149,16 +149,16 @@ export default function DashboardPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">
+          <h1 className="text-3xl font-bold text-foreground">
             {isAdmin ? 'Dashboard de Admin' : 'Dashboard de Organización'}
           </h1>
-          <p className="text-slate-600 mt-2">
+          <p className="text-muted mt-2">
             Bienvenido, {session.user.name || session.user.email}
           </p>
         </div>
         <Link
           href={appendReturnTo('/events/new', '/dashboard')}
-          className="bg-brand-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-700 transition-colors flex items-center gap-2"
+          className="bg-cta text-white px-6 py-3 rounded-xl font-bold hover:bg-primary transition-colors flex items-center gap-2"
         >
           <svg
             className="w-5 h-5"
@@ -181,54 +181,54 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {isAdmin ? (
           <>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <div className="text-2xl font-bold text-brand-600 mb-2">
+            <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
+              <div className="text-2xl font-bold text-primary mb-2">
                 {orgs.length}
               </div>
-              <div className="text-slate-600">Organizaciones</div>
+              <div className="text-muted">Organizaciones</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
               <div className="text-2xl font-bold text-green-600 mb-2">
                 {eventStats.upcoming}
               </div>
-              <div className="text-slate-600">Eventos próximos</div>
+              <div className="text-muted">Eventos próximos</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <div className="text-2xl font-bold text-slate-600 mb-2">
+            <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
+              <div className="text-2xl font-bold text-muted mb-2">
                 {eventStats.total}
               </div>
-              <div className="text-slate-600">Total de eventos</div>
+              <div className="text-muted">Total de eventos</div>
             </div>
           </>
         ) : (
           <>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <div className="text-2xl font-bold text-brand-600 mb-2">
+            <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
+              <div className="text-2xl font-bold text-primary mb-2">
                 {events.length}
               </div>
-              <div className="text-slate-600">Total de Eventos</div>
+              <div className="text-muted">Total de Eventos</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
               <div className="text-2xl font-bold text-green-600 mb-2">
                 {upcomingEvents.length}
               </div>
-              <div className="text-slate-600">Próximos Eventos</div>
+              <div className="text-muted">Próximos Eventos</div>
             </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <div className="text-2xl font-bold text-slate-600 mb-2">
+            <div className="bg-surface p-6 rounded-2xl border border-border shadow-sm">
+              <div className="text-2xl font-bold text-muted mb-2">
                 {pastEvents.length}
               </div>
-              <div className="text-slate-600">Eventos Pasados</div>
+              <div className="text-muted">Eventos Pasados</div>
             </div>
           </>
         )}
       </div>
 
       {isAdmin && (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 mb-8">
+        <div className="bg-surface rounded-2xl border border-border shadow-sm p-8 mb-8">
           <>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-slate-900">
+              <h2 className="text-xl font-bold text-foreground">
                 Gestión de Organizaciones
               </h2>
               <button
@@ -237,7 +237,7 @@ export default function DashboardPage() {
                   setTempPassword('');
                   setCreateOrgError('');
                 }}
-                className="flex items-center gap-2 bg-brand-600 text-white px-4 py-2.5 rounded-xl font-bold hover:bg-brand-700 transition-colors text-sm"
+                className="flex items-center gap-2 bg-cta text-white px-4 py-2.5 rounded-xl font-bold hover:bg-primary transition-colors text-sm"
               >
                 <svg
                   className="w-4 h-4"
@@ -257,11 +257,11 @@ export default function DashboardPage() {
             </div>
 
             {orgsLoading ? (
-              <div className="text-slate-500 text-center py-8">
+              <div className="text-muted text-center py-8">
                 Cargando organizaciones...
               </div>
             ) : orgs.length === 0 ? (
-              <div className="text-center py-10 text-slate-500">
+              <div className="text-center py-10 text-muted">
                 No hay organizaciones registradas.
               </div>
             ) : (
@@ -269,16 +269,16 @@ export default function DashboardPage() {
                 {orgs.map((org) => (
                   <div
                     key={org.id}
-                    className="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-slate-200 transition-colors"
+                    className="flex items-center gap-4 p-4 rounded-xl border border-border hover:border-accent transition-colors"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center text-brand-600 font-bold text-lg shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-primary-soft flex items-center justify-center text-primary font-bold text-lg shrink-0">
                       {org.name?.charAt(0)?.toUpperCase() ?? '?'}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold text-slate-900 truncate">
+                      <p className="font-bold text-foreground truncate">
                         {org.name ?? org.email}
                       </p>
-                      <p className="text-sm text-slate-500">{org.email}</p>
+                      <p className="text-sm text-muted">{org.email}</p>
                     </div>
                     <div className="flex gap-2 shrink-0">
                       <Link
@@ -286,7 +286,7 @@ export default function DashboardPage() {
                           `/organizations/${org.id}`,
                           '/dashboard',
                         )}
-                        className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
+                        className="p-2 text-muted hover:text-primary hover:bg-primary-soft rounded-lg transition-colors"
                         title="Ver perfil"
                       >
                         <svg
@@ -314,7 +314,7 @@ export default function DashboardPage() {
                           `/organizations/${org.id}/edit`,
                           '/dashboard',
                         )}
-                        className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
+                        className="p-2 text-muted hover:text-primary hover:bg-primary-soft rounded-lg transition-colors"
                         title="Editar"
                       >
                         <svg
@@ -334,7 +334,7 @@ export default function DashboardPage() {
                       {org.email !== session.user.email && (
                         <button
                           onClick={() => setDeleteOrgModal(org)}
-                          className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-2 text-muted hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                           title="Eliminar"
                         >
                           <svg
@@ -361,32 +361,28 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+      <div className="bg-surface rounded-2xl border border-border shadow-sm p-8">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-slate-900">Mis Eventos</h2>
+          <h2 className="text-xl font-bold text-foreground">Mis Eventos</h2>
           <Link
             href={appendReturnTo(
               `/organizations/${session.user.id}/edit`,
               '/dashboard',
             )}
-            className="text-sm font-semibold text-brand-600 hover:underline"
+            className="text-sm font-semibold text-primary hover:underline"
           >
             Editar perfil de organización →
           </Link>
         </div>
 
         {eventsLoading ? (
-          <div className="text-slate-500 text-center py-8">
-            Cargando eventos...
-          </div>
+          <div className="text-muted text-center py-8">Cargando eventos...</div>
         ) : events.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-slate-500 mb-4">
-              Aún no has creado ningún evento.
-            </p>
+            <p className="text-muted mb-4">Aún no has creado ningún evento.</p>
             <Link
               href={appendReturnTo('/events/new', '/dashboard')}
-              className="bg-brand-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-700 transition-colors inline-block"
+              className="bg-cta text-white px-6 py-3 rounded-xl font-bold hover:bg-primary transition-colors inline-block"
             >
               Crear primer evento
             </Link>
@@ -399,7 +395,7 @@ export default function DashboardPage() {
               return (
                 <div
                   key={event.id}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-slate-100 hover:border-slate-200 transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-border hover:border-accent transition-colors"
                 >
                   {event.banner && (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -412,18 +408,18 @@ export default function DashboardPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span
-                        className={`text-xs font-bold px-2 py-0.5 rounded-full ${isPast ? 'bg-slate-100 text-slate-500' : 'bg-green-100 text-green-700'}`}
+                        className={`text-xs font-bold px-2 py-0.5 rounded-full ${isPast ? 'bg-surface-soft text-muted' : 'bg-green-100 text-green-700'}`}
                       >
                         {isPast ? 'Pasado' : 'Próximo'}
                       </span>
                     </div>
                     <Link
                       href={appendReturnTo(`/events/${event.id}`, '/dashboard')}
-                      className="font-bold text-slate-900 hover:text-brand-600 transition-colors truncate block"
+                      className="font-bold text-foreground hover:text-primary transition-colors truncate block"
                     >
                       {event.title}
                     </Link>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-muted">
                       {start.toLocaleDateString('es-PE', {
                         day: 'numeric',
                         month: 'short',
@@ -438,7 +434,7 @@ export default function DashboardPage() {
                         `/events/${event.id}/edit`,
                         '/dashboard',
                       )}
-                      className="p-2 text-slate-500 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
+                      className="p-2 text-muted hover:text-primary hover:bg-primary-soft rounded-lg transition-colors"
                       title="Editar"
                     >
                       <svg
@@ -460,7 +456,7 @@ export default function DashboardPage() {
                         setDeleteModalEvent(event);
                         setDeleteError('');
                       }}
-                      className="p-2 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                      className="p-2 text-muted hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                       title="Eliminar"
                     >
                       <svg
@@ -487,15 +483,15 @@ export default function DashboardPage() {
 
       {/* Modal de confirmación de borrado de evento */}
       {deleteModalEvent && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">
+        <div className="fixed inset-0 bg-primary/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
+          <div className="bg-surface rounded-3xl w-full max-w-md shadow-2xl p-8">
+            <h2 className="text-xl font-bold text-foreground mb-3">
               ¿Eliminar evento?
             </h2>
-            <p className="text-slate-600 mb-2">
+            <p className="text-muted mb-2">
               Esta acción no se puede deshacer. Se eliminará:
             </p>
-            <p className="font-semibold text-slate-800 mb-6">
+            <p className="font-semibold text-foreground mb-6">
               &quot;{deleteModalEvent.title}&quot;
             </p>
             {deleteError && (
@@ -509,7 +505,7 @@ export default function DashboardPage() {
                   setDeleteModalEvent(null);
                   setDeleteError('');
                 }}
-                className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 rounded-xl border border-border text-muted font-bold hover:bg-surface-soft hover:text-primary transition-colors"
               >
                 Cancelar
               </button>
@@ -527,8 +523,8 @@ export default function DashboardPage() {
 
       {/* Modal crear organización */}
       {createOrgModal && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-8">
+        <div className="fixed inset-0 bg-primary/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
+          <div className="bg-surface rounded-3xl w-full max-w-md shadow-2xl p-8">
             {tempPassword ? (
               <>
                 <div className="text-center mb-6">
@@ -547,22 +543,22 @@ export default function DashboardPage() {
                       />
                     </svg>
                   </div>
-                  <h2 className="text-xl font-bold text-slate-900 mb-2">
+                  <h2 className="text-xl font-bold text-foreground mb-2">
                     Organización creada
                   </h2>
-                  <p className="text-slate-600 text-sm">
+                  <p className="text-muted text-sm">
                     Comparte esta contraseña temporal con la organización:
                   </p>
                 </div>
-                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-center mb-6">
-                  <p className="text-xs text-slate-500 mb-1">
+                <div className="bg-accent-soft border border-accent rounded-xl p-4 text-center mb-6">
+                  <p className="text-xs text-primary mb-1">
                     Contraseña temporal
                   </p>
-                  <p className="text-2xl font-mono font-bold text-brand-600 tracking-widest">
+                  <p className="text-2xl font-mono font-bold text-primary tracking-widest">
                     {tempPassword}
                   </p>
                 </div>
-                <p className="text-xs text-slate-500 text-center mb-6">
+                <p className="text-xs text-muted text-center mb-6">
                   Al iniciar sesión por primera vez, el sistema les pedirá
                   cambiarla.
                 </p>
@@ -571,18 +567,18 @@ export default function DashboardPage() {
                     setCreateOrgModal(false);
                     setTempPassword('');
                   }}
-                  className="w-full py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition-colors"
+                  className="w-full py-3 rounded-xl bg-cta text-white font-bold hover:bg-primary transition-colors"
                 >
                   Listo
                 </button>
               </>
             ) : (
               <form onSubmit={handleCreateOrg}>
-                <h2 className="text-xl font-bold text-slate-900 mb-6">
+                <h2 className="text-xl font-bold text-foreground mb-6">
                   Nueva organización
                 </h2>
                 <div className="mb-5">
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  <label className="block text-sm font-semibold text-foreground mb-2">
                     Email de la organización
                   </label>
                   <input
@@ -594,14 +590,14 @@ export default function DashboardPage() {
                       setCreateOrgError('');
                     }}
                     placeholder="org@pucp.edu.pe"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none"
+                    className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground focus:ring-2 focus:ring-cta focus:border-transparent outline-none"
                   />
                   {visibleCreateOrgEmailError && (
                     <p className="text-xs text-red-600 mt-1">
                       {visibleCreateOrgEmailError}
                     </p>
                   )}
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-muted mt-1">
                     Se generará una contraseña temporal automáticamente.
                   </p>
                 </div>
@@ -617,14 +613,14 @@ export default function DashboardPage() {
                       setCreateOrgModal(false);
                       setCreateOrgError('');
                     }}
-                    className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors"
+                    className="flex-1 py-3 rounded-xl border border-border text-muted font-bold hover:bg-surface-soft hover:text-primary transition-colors"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
                     disabled={createOrgLoading}
-                    className="flex-1 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-700 transition-colors disabled:opacity-50"
+                    className="flex-1 py-3 rounded-xl bg-cta text-white font-bold hover:bg-primary transition-colors disabled:opacity-50"
                   >
                     {createOrgLoading ? 'Creando...' : 'Crear'}
                   </button>
@@ -637,21 +633,21 @@ export default function DashboardPage() {
 
       {/* Modal eliminar organización */}
       {deleteOrgModal && (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-md shadow-2xl p-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">
+        <div className="fixed inset-0 bg-primary/50 backdrop-blur-sm z-110 flex items-center justify-center p-4">
+          <div className="bg-surface rounded-3xl w-full max-w-md shadow-2xl p-8">
+            <h2 className="text-xl font-bold text-foreground mb-3">
               ¿Eliminar organización?
             </h2>
-            <p className="text-slate-600 mb-2">
+            <p className="text-muted mb-2">
               Esta acción no se puede deshacer. Se eliminará:
             </p>
-            <p className="font-semibold text-slate-800 mb-6">
+            <p className="font-semibold text-foreground mb-6">
               {deleteOrgModal.name ?? deleteOrgModal.email}
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setDeleteOrgModal(null)}
-                className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-700 font-bold hover:bg-slate-50 transition-colors"
+                className="flex-1 py-3 rounded-xl border border-border text-muted font-bold hover:bg-surface-soft hover:text-primary transition-colors"
               >
                 Cancelar
               </button>

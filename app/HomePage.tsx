@@ -223,23 +223,23 @@ export default function HomePage({ searchParams }: HomePageProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
-          Descubre <span className="text-indigo-600">eventos comunitarios</span>{' '}
-          en la PUCP
+        <h1 className="text-4xl font-extrabold text-foreground mb-4 tracking-tight">
+          Descubre <span className="text-primary">eventos comunitarios</span> en
+          la PUCP
         </h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+        <p className="text-lg text-muted max-w-2xl mx-auto">
           Desde charlas hasta concursos, descubre los mejores eventos y
           actividades organizados por los estudiantes.
         </p>
       </div>
 
       {/* CONTENEDOR PRINCIPAL DE FILTROS */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-8 space-y-4">
+      <div className="bg-surface p-6 rounded-2xl shadow-sm border border-border mb-8 space-y-4">
         {/* FILA 1: Buscador */}
         <div className="w-full">
           <div className="relative">
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -254,7 +254,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
             <input
               type="text"
               placeholder="Busca eventos, temas u organizaciones..."
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-surface text-foreground focus:ring-2 focus:ring-cta focus:border-transparent outline-none transition-all"
               value={search}
               onChange={(e) => updateFilters({ q: e.target.value })}
             />
@@ -263,7 +263,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
 
         {/* FILA 2: Categorías */}
         <div className="flex flex-wrap gap-2">
-          <span className="text-sm font-medium text-slate-600 self-center mr-2">
+          <span className="text-sm font-medium text-muted self-center mr-2">
             Categorías:
           </span>
           {categories.map((cat) => (
@@ -272,8 +272,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
               onClick={() => toggleCategory(cat.id)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 selectedCats.includes(cat.id)
-                  ? 'bg-indigo-600 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-cta text-white shadow-md'
+                  : 'bg-surface-soft text-muted hover:bg-cta-soft hover:text-primary'
               }`}
             >
               {cat.name}
@@ -283,7 +283,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
 
         {/* FILA 3: Fechas predeterminadas */}
         <div className="flex flex-wrap gap-2">
-          <span className="text-sm font-medium text-slate-600 self-center mr-2">
+          <span className="text-sm font-medium text-muted self-center mr-2">
             Fecha:
           </span>
           <button
@@ -293,8 +293,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
             }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               areDateRangesEqual(dateRange, getToday())
-                ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-cta text-white shadow-md'
+                : 'bg-surface-soft text-muted hover:bg-cta-soft hover:text-primary'
             }`}
           >
             Hoy
@@ -306,8 +306,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
             }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               areDateRangesEqual(dateRange, getThisWeek())
-                ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-cta text-white shadow-md'
+                : 'bg-surface-soft text-muted hover:bg-cta-soft hover:text-primary'
             }`}
           >
             Esta semana
@@ -319,8 +319,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
             }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               areDateRangesEqual(dateRange, getThisMonth())
-                ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-cta text-white shadow-md'
+                : 'bg-surface-soft text-muted hover:bg-cta-soft hover:text-primary'
             }`}
           >
             Este mes
@@ -332,8 +332,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
             }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               areDateRangesEqual(dateRange, futureDateString(7))
-                ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-cta text-white shadow-md'
+                : 'bg-surface-soft text-muted hover:bg-cta-soft hover:text-primary'
             }`}
           >
             Próximos 7d
@@ -345,8 +345,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
             }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               areDateRangesEqual(dateRange, futureDateString(30))
-                ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                ? 'bg-cta text-white shadow-md'
+                : 'bg-surface-soft text-muted hover:bg-cta-soft hover:text-primary'
             }`}
           >
             Próximos 30d
@@ -359,21 +359,21 @@ export default function HomePage({ searchParams }: HomePageProps) {
           <div className="flex gap-2 items-center">
             <input
               type="date"
-              className="px-3 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+              className="px-3 py-2 rounded-xl border border-border bg-surface text-foreground text-sm focus:ring-2 focus:ring-cta focus:border-transparent outline-none transition-all"
               value={dateRange.start}
               onChange={(e) => updateFilters({ dateStart: e.target.value })}
             />
-            <span className="text-slate-400 text-xs">→</span>
+            <span className="text-muted text-xs">→</span>
             <input
               type="date"
-              className="px-3 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+              className="px-3 py-2 rounded-xl border border-border bg-surface text-foreground text-sm focus:ring-2 focus:ring-cta focus:border-transparent outline-none transition-all"
               value={dateRange.end}
               onChange={(e) => updateFilters({ dateEnd: e.target.value })}
             />
           </div>
 
           {/* Separador vertical */}
-          <div className="hidden md:block h-8 w-px bg-slate-200"></div>
+          <div className="hidden md:block h-8 w-px bg-border"></div>
 
           <Select
             value={selectedOrg ?? ''}
@@ -408,7 +408,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
           {hasActiveFilters && (
             <button
               onClick={() => router.replace(pathname)}
-              className="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg border border-border text-xs font-medium text-muted hover:bg-surface-soft hover:text-primary transition-all flex items-center gap-1.5"
             >
               <svg
                 className="w-3.5 h-3.5"
@@ -430,12 +430,12 @@ export default function HomePage({ searchParams }: HomePageProps) {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center min-h-96 rounded-3xl border border-dashed border-slate-300 bg-white">
-          <div className="text-slate-500">Cargando eventos...</div>
+        <div className="flex items-center justify-center min-h-96 rounded-3xl border border-dashed border-border bg-surface">
+          <div className="text-muted">Cargando eventos...</div>
         </div>
       ) : sortedEvents.length > 0 ? (
         <>
-          <p className="text-sm text-slate-500 mb-4">
+          <p className="text-sm text-muted mb-4">
             {sortedEvents.length} evento
             {sortedEvents.length !== 1 ? 's' : ''} encontrado
             {sortedEvents.length !== 1 ? 's' : ''}
@@ -463,7 +463,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
                   })
                 }
                 disabled={currentPage === 1}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 rounded-xl border border-border text-muted font-medium hover:bg-surface-soft hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 ← Anterior
               </button>
@@ -475,8 +475,8 @@ export default function HomePage({ searchParams }: HomePageProps) {
                       onClick={() => updateFilters({ page: page.toString() })}
                       className={`w-9 h-9 rounded-xl text-sm font-bold transition-colors ${
                         page === currentPage
-                          ? 'bg-indigo-600 text-white'
-                          : 'border border-slate-200 text-slate-600 hover:bg-slate-50'
+                          ? 'bg-cta text-white'
+                          : 'border border-border text-muted hover:bg-surface-soft hover:text-primary'
                       }`}
                     >
                       {page}
@@ -491,7 +491,7 @@ export default function HomePage({ searchParams }: HomePageProps) {
                   })
                 }
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 rounded-xl border border-border text-muted font-medium hover:bg-surface-soft hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 Siguiente →
               </button>
@@ -499,12 +499,12 @@ export default function HomePage({ searchParams }: HomePageProps) {
           )}
         </>
       ) : (
-        <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-300">
-          <div className="text-slate-400 mb-4 text-5xl">🔭</div>
-          <h3 className="text-xl font-semibold text-slate-800">
+        <div className="text-center py-20 bg-surface rounded-3xl border border-dashed border-border">
+          <div className="text-muted mb-4 text-5xl">🔭</div>
+          <h3 className="text-xl font-semibold text-foreground">
             Sin eventos encontrados
           </h3>
-          <p className="text-slate-500">
+          <p className="text-muted">
             Intenta ajustar tus filtros o términos de búsqueda.
           </p>
         </div>

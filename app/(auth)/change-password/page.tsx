@@ -52,9 +52,9 @@ export default function ChangePasswordPage() {
 
   return (
     <div className="flex items-center justify-center py-20 px-4">
-      <div className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md border border-slate-100">
+      <div className="bg-surface p-10 rounded-3xl shadow-xl w-full max-w-md border border-border">
         <h2 className="text-2xl font-bold mb-2">¡Hola!</h2>
-        <p className="text-slate-500 mb-6">Establece una nueva contraseña.</p>
+        <p className="text-muted mb-6">Establece una nueva contraseña.</p>
 
         {error && (
           <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
@@ -64,12 +64,12 @@ export default function ChangePasswordPage() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2">
+            <label className="block text-sm font-bold text-foreground mb-2">
               Contraseña Antigua
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
               placeholder="••••••••"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
@@ -77,12 +77,12 @@ export default function ChangePasswordPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2">
+            <label className="block text-sm font-bold text-foreground mb-2">
               Contraseña Nueva
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
               placeholder="••••••••"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -90,12 +90,12 @@ export default function ChangePasswordPage() {
             />
           </div>
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2">
+            <label className="block text-sm font-bold text-foreground mb-2">
               Confirma la Contraseña
             </label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-surface text-foreground outline-none focus:ring-2 focus:ring-cta"
               placeholder="••••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -105,7 +105,7 @@ export default function ChangePasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-brand-600 text-white py-4 rounded-2xl font-bold hover:bg-brand-700 transition-colors disabled:opacity-50"
+            className="w-full bg-cta text-white py-4 rounded-2xl font-bold hover:bg-primary transition-colors disabled:opacity-50"
           >
             {loading ? 'Actualizando...' : 'Actualizar y continuar'}
           </button>
