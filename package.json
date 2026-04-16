@@ -57,6 +57,9 @@
     ],
     "*.{css}": [
       "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
     ]
   }
 }

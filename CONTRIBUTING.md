@@ -92,7 +92,7 @@ Esto garantiza que tu nueva rama partirá del estado más reciente del repositor
 > ```
 >
 > Con esto la nueva rama conserva el commit y `main` vuelve al estado anterior. No uses `--hard` si ya hiciste
-`git push`, ese caso necesitaría otra solución.
+> `git push`, ese caso necesitaría otra solución.
 
 2. Crea una rama desde `main`, usando un prefijo de acuerdo al tipo de cambio. Por ejemplo:
 
